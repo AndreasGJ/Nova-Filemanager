@@ -21,6 +21,7 @@ export default {
     },
     computed: {
         hasPreview() {
+            console.log('showPreview', this.field);
             return true;
         },
     },
