@@ -1,12 +1,12 @@
 <template>
     <div>
         <template v-if="field.value">
-            <panel-item  v-if="display == 'normal'" :field="field" />
-            <ImagePanel v-else :field="field" />
+            <panel-item v-if="display == 'normal'" :field="field" />
+            <ImagePanel v-else :field="field" :hasPreview="hasPreview" />
         </template>
 
         <template v-else>
-            <panel-item  :field="field" />
+            <panel-item :field="field" />
         </template>
     </div>
 </template>
@@ -18,6 +18,11 @@ export default {
     props: ['resource', 'resourceName', 'resourceId', 'field'],
     components: {
         ImagePanel: ImagePanel,
+    },
+    computed: {
+        hasPreview() {
+            return true;
+        },
     },
     data: () => ({
         display: 'normal',
