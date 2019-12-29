@@ -114,11 +114,10 @@ export default {
     }),
     computed: {
         isFulled() {
-            console.log('isFulled', this.$viewer && this.$viewer.fulled);
             return this.$viewer && this.$viewer.fulled ? true : false;
         },
         mergedVOptions() {
-            return this.isFulled ? { ...this.voptions, ...this.voptionsFulled } : this.voptions;
+            return { ...this.voptions, ...this.voptionsFulled };
         },
     },
 
@@ -127,10 +126,6 @@ export default {
             this.$viewer = viewer;
             this.loading = false;
             this.$viewer.show();
-
-            window.VIEWER = this.$viewer;
-
-            console.log('init', this.$viewer);
         },
 
         closePreview(e) {
