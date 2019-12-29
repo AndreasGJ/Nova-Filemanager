@@ -130,22 +130,12 @@ export default {
 
             window.VIEWER = this.$viewer;
 
-            this.$viewer.addEventListener('enterfullscreen', () => {
-                console.log('enterfullscreen');
-            });
-            this.$viewer.addEventListener('exitfullscreen', () => {
-                console.log('enterfullscreen');
-            });
-
             console.log('init', this.$viewer);
         },
 
         closePreview(e) {
             e.preventDefault();
             e.stopPropagation();
-        },
-        logger() {
-            console.log('tester', { viewer: this.$viewer });
         },
     },
 
