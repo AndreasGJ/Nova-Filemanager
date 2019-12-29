@@ -127,6 +127,8 @@ export default {
             this.$viewer = viewer;
             this.loading = false;
             this.$viewer.show();
+
+            console.log('init', this.$viewer);
         },
 
         closePreview(e) {
