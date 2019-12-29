@@ -128,6 +128,15 @@ export default {
             this.loading = false;
             this.$viewer.show();
 
+            window.VIEWER = this.$viewer;
+
+            this.$viewer.addEventListener('enterfullscreen', () => {
+                console.log('enterfullscreen');
+            });
+            this.$viewer.addEventListener('exitfullscreen', () => {
+                console.log('enterfullscreen');
+            });
+
             console.log('init', this.$viewer);
         },
 
