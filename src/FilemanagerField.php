@@ -29,6 +29,11 @@ class FilemanagerField extends Field implements Cover
     /**
      * @var bool
      */
+    protected $showPreview = true;
+
+    /**
+     * @var bool
+     */
     protected $createFolderButton;
 
     /**
@@ -236,6 +241,18 @@ class FilemanagerField extends Field implements Cover
     }
 
     /**
+     * Show preview option in detail view.
+     * 
+     * @return $this
+     */
+    public function setPreview(bool $showPreview)
+    {
+        $this->showPreview = $showPreview;
+
+        return $this;
+    }
+
+    /**
      * Resolve the thumbnail URL for the field.
      *
      * @return string|null
@@ -289,6 +306,9 @@ class FilemanagerField extends Field implements Cover
             $this->buttons(),
             $this->getUploadRules(),
             $this->getCoverType(),
+            [
+                'showPreview' => $this->showPreview
+            ],
             $this->meta
         );
     }
