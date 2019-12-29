@@ -21,14 +21,13 @@ export default {
     },
     computed: {
         hasPreview() {
-            return true;
+            return this.field.showPreview ? true : false;
         },
     },
     data: () => ({
         display: 'normal',
     }),
     mounted() {
-         console.log('showPreview', this.field);
         this.display = this.field.display || 'normal';
     },
 };

@@ -1,35 +1,40 @@
 <template>
     <transition name="fade">
-
-        <div
-            ref="card"
-            :loading="loading"
-            :class="css"
-        >
+        <div ref="card" :loading="loading" :class="css">
             <template v-if="loading">
                 <div class="rounded-lg flex items-center justify-center absolute pin z-50">
                     <loader class="text-60" />
                 </div>
             </template>
 
-            <div v-if="!this.preview" ref="imageDiv" class="image-block flex justify-center w-full h-5/6">
+            <div
+                v-if="!this.preview"
+                ref="imageDiv"
+                class="image-block flex justify-center w-full h-5/6"
+            ></div>
 
-            </div>
-
-            <viewer :options="voptions" :images="images"
-                    @inited="inited"
-                    class="viewer" ref="viewer"
-                    v-if="preview"
-                    @keydown.esc="closePreview"
+            <viewer
+                :options="voptions"
+                :images="images"
+                @inited="inited"
+                class="viewer"
+                ref="viewer"
+                v-if="preview"
+                @keydown.esc="closePreview"
             >
                 <template slot-scope="scope">
-                    <img :src="file.image" :key="file.id">
+                    <img :src="file.image" :key="file.id" />
                 </template>
             </viewer>
 
             <div class="missing p-8" v-if="missing">
                 <p class="text-center leading-normal">
-                    <a :href="file.name" class="text-primary dim" target="_blank">{{__('This image')}}</a> {{__('could not be found.')}}
+                    <a
+                        :href="file.name"
+                        class="text-primary dim"
+                        target="_blank"
+                    >{{__('This image')}}</a>
+                    {{__('could not be found.')}}
                 </p>
             </div>
         </div>
@@ -77,11 +82,19 @@ export default {
             navbar: false,
             loading: true,
             title: false,
-            toolbar: false,
+            toolbar: {
+                zoomIn: 3,
+                zoomOut: 3,
+                rotateLeft: 3,
+                rotateRight: 3,
+                flipHorizontal: 3,
+                flipVertical: 3,
+            },
             tooltip: false,
             movable: false,
-            zoomable: false,
-            rotatable: false,
+            zoomable: true,
+            zoomOnWheel: true,
+            rotatable: true,
             scalable: true,
             transition: true,
             fullscreen: true,
