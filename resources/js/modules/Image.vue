@@ -117,9 +117,15 @@ export default {
             e.preventDefault();
             e.stopPropagation();
         },
+        logger() {
+            console.log('tester', { viewer: this.$viewer });
+        },
     },
 
     mounted() {
+        setInterval(() => {
+            this.logger();
+        }, 5000);
         if (this.preview) {
             this.images.push(this.file.image);
         } else {
