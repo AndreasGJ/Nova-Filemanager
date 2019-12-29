@@ -14,7 +14,7 @@
             ></div>
 
             <viewer
-                :options="isFulled ? {...voptions, ...voptionsFulled} : voptions"
+                :options="mergedVOptions"
                 :images="images"
                 @inited="inited"
                 class="viewer"
@@ -114,7 +114,11 @@ export default {
     }),
     computed: {
         isFulled() {
+            console.log('isFulled', this.$viewer && this.$viewer.fulled);
             return this.$viewer && this.$viewer.fulled ? true : false;
+        },
+        mergedVOptions() {
+            return this.isFulled ? { ...this.voptions, ...this.voptionsFulled } : this.voptions;
         },
     },
 
