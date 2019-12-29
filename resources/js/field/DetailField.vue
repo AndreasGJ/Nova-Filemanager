@@ -21,7 +21,6 @@ export default {
     },
     computed: {
         hasPreview() {
-            console.log('showPreview', this.field);
             return true;
         },
     },
@@ -29,6 +28,7 @@ export default {
         display: 'normal',
     }),
     mounted() {
+         console.log('showPreview', this.field);
         this.display = this.field.display || 'normal';
     },
 };
