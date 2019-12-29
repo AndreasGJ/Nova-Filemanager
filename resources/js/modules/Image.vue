@@ -14,7 +14,7 @@
             ></div>
 
             <viewer
-                :options="voptions"
+                :options="isFulled ? {...voptions, ...voptionsFulled} : voptions"
                 :images="images"
                 @inited="inited"
                 class="viewer"
@@ -82,6 +82,20 @@ export default {
             navbar: false,
             loading: true,
             title: false,
+            toolbar: false,
+            tooltip: false,
+            movable: false,
+            zoomable: false,
+            zoomOnWheel: false,
+            rotatable: false,
+            scalable: true,
+            transition: true,
+            fullscreen: true,
+            keyboard: true,
+            toggleOnDblclick: true,
+            url: 'data-source',
+        },
+        voptionsFulled: {
             toolbar: {
                 zoomIn: 3,
                 zoomOut: 3,
@@ -90,21 +104,19 @@ export default {
                 flipHorizontal: 3,
                 flipVertical: 3,
             },
-            tooltip: false,
             movable: false,
-            zoomable: true,
-            zoomOnWheel: true,
-            rotatable: true,
-            scalable: true,
-            transition: true,
-            fullscreen: true,
-            keyboard: true,
-            toggleOnDblclick: true,
-            url: 'data-source',
+            zoomable: false,
+            zoomOnWheel: false,
+            rotatable: false,
         },
         $viewer: null,
         images: [],
     }),
+    computed: {
+        isFulled() {
+            return this.$viewer && this.$viewer.fulled ? true : false;
+        },
+    },
 
     methods: {
         inited(viewer) {
@@ -123,9 +135,6 @@ export default {
     },
 
     mounted() {
-        setInterval(() => {
-            this.logger();
-        }, 5000);
         if (this.preview) {
             this.images.push(this.file.image);
         } else {
